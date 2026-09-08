@@ -1,5 +1,5 @@
 # yankaifeng70-bot.github.io
-[README.md](https://github.com/user-attachments/files/31933530/README.md)
+
 <!DOCTYPE html>
 <html>
 <head>
