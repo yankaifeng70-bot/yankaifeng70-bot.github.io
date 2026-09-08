@@ -1,11 +1,9 @@
 # yankaifeng70-bot.github.io
 [README.md](https://github.com/user-attachments/files/31933530/README.md)
-# 1
-<span style="background-color: black; color: red;font-size:30px;">**I'm here, ready for the Cybersecurity world**</span>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>gz2008的技术博客</title>
+    <title>yankaifeng70的技术博客</title>
     <style>
         *{margin:0;padding:0;}
         .banner{background:#888;color:#fff;text-align:center;padding:120px 20px;}
@@ -16,7 +14,7 @@
 </head>
 <body>
     <div class="banner">
-        <h1>gz2008的技术博客</h1>
+        <h1>yankaifeng70的技术博客</h1>
        
     <div class="post-list">
         <div class="post-item"><a href=" ">task01 我的第一篇博客</a ></div>
