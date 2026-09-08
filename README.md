@@ -1,9 +1,8 @@
 # yankaifeng70-bot.github.io
-
 <!DOCTYPE html>
 <html>
 <head>
-    <title>yankaifeng70的技术博客</title>
+    <title>gz2008的技术博客</title>
     <style>
         *{margin:0;padding:0;}
         .banner{background:#888;color:#fff;text-align:center;padding:120px 20px;}
@@ -14,11 +13,11 @@
 </head>
 <body>
     <div class="banner">
-        <h1>yankaifeng70的技术博客</h1>
+        <h1>gz2008的技术博客</h1>
        
     <div class="post-list">
-        <div class="post-item"><a href=" ">task01 我的第一篇博客</a ></div>
+        <div class="post-item"><a href="blog.html">task01 我的第一篇博客</a></div>
     </div>
 </body>
 </html>
-index.html
+
