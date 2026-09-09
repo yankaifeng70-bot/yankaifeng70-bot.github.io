@@ -13,7 +13,7 @@
 </head>
 <body>
     <div class="banner">
-        <h1>gz2008的技术博客</h1>
+        <h1>yanakifeng70的技术博客</h1>
        
     <div class="post-list">
         <div class="post-item"><a href="blog.html">task01 我的第一篇博客</a></div>
