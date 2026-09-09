@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>gz2008的技术博客</title>
+    <title>yankaifeng70的技术博客</title>
     <style>
         *{margin:0;padding:0;}
         .banner{background:#888;color:#fff;text-align:center;padding:120px 20px;}
