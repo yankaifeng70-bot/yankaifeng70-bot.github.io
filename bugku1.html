@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN"
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #050505;
+            color: #39ff14;
+            font-family: "Consolas", "Monaco", monospace;
+            /* 黑客等宽字体 */
+            line-height: 1.6;
+            position: relative;
+            min-height: 100vh;
+        }
+        /* 屏幕扫描线特效 */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0,0,0,0.15),
+                rgba(0,0,0,0.15) 1px,
+                transparent 1px,
+                transparent 3px
+            );
+            pointer-events: none;
+            z-index: 99;
+        }
+        /* 顶部banner */
+        .banner {
+            background: linear-gradient(#0a190a, #000000);
+            text-align: center;
+            padding: 120px 20px;
+            border-bottom: 1px solid #39ff14;
+            position: relative;
+        }
+        .banner h1 {
+            font-size: clamp(32px, 8vw, 80px);
+            text-shadow: 0 0 8px #39ff14, 0 0 16px #00cc00;
+            animation: flicker 4s infinite alternate;
+        }
+        /* 文字闪烁动画 */
+        @keyframes flicker {
+            0% { opacity: 0.9; }
+            50% { opacity: 1; }
+            100% { opacity: 0.95; }
+        }
+        .post-list {
+            max-width: 900px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+        .post-item {
+            font-size: clamp(20px, 4vw, 40px);
+            font-weight: bold;
+            margin-bottom: 24px;
+            padding: 12px;
+            border-left: 3px solid #39ff14;
+            transition: all 0.3s;
+        }
+        .post-item:hover {
+            background-color: rgba(57, 255, 20, 0.08);
+            border-left-color: #00ffff;
+        }
+        .post-item a {
+            color: #39ff14;
+            text-decoration: none;
+            text-shadow: 0 0 4px #39ff14;
+            transition: all 0.3s;
+        }
+        .post-item a:hover {
+            color: #00ffff;
+            text-shadow: 0 0 8px #00ffff, 0 0 16px #00ffff;
+        }
+        /* 底部提示 */
+        .footer {
+            text-align: center;
+            padding: 40px;
+            color: #777;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        
+        <p style="margin-top:16px; font-size:20px;">## 1、签到题｜扫码获得 flag
+
+### 题目描述
+
+打开页面，页面上展示一张二维码图片，提示扫码获取 flag。
+
+### 解题思路
+
+这是最简单的 Misc 签到题，考点：二维码识别。
+
+### 操作步骤
+
+1. 访问题目链接，页面直接展示二维码。
+2. 截图保存二维码图片。
+3. 使用二维码识别工具（手机微信 / QQ 扫一扫、在线二维码解码网站、zbar、zxing 工具）读取二维码内容。
+4. 识别成功后直接得到 flag 字符串，提交即可。</p>
+    </div>
+
+
+      
+    </div>
+
+    <div class="footer">
+        © 2026 yankaifeng70 | Hacker Terminal Theme
+    </div>
+</body>
+</html>
