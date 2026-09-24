@@ -11,15 +11,14 @@
             box-sizing: border-box;
         }
         body {
-            background-color: #050505;
-            color: #39ff14;
+            background-color: #000000;
+            color: #ff2222;
             font-family: "Consolas", "Monaco", monospace;
-            /* 黑客等宽字体 */
             line-height: 1.6;
             position: relative;
             min-height: 100vh;
         }
-        /* 屏幕扫描线特效 */
+        /* CRT扫描线 */
         body::before {
             content: "";
             position: fixed;
@@ -29,28 +28,31 @@
             height: 100%;
             background: repeating-linear-gradient(
                 0deg,
-                rgba(0,0,0,0.15),
-                rgba(0,0,0,0.15) 1px,
+                rgba(100,0,0,0.12),
+                rgba(100,0,0,0.12) 1px,
                 transparent 1px,
                 transparent 3px
             );
             pointer-events: none;
             z-index: 99;
         }
-        /* 顶部banner */
         .banner {
-            background: linear-gradient(#0a190a, #000000);
+            background: linear-gradient(#200000, #000000);
             text-align: center;
             padding: 120px 20px;
-            border-bottom: 1px solid #39ff14;
+            border-bottom: 1px solid #ff2222;
             position: relative;
         }
         .banner h1 {
             font-size: clamp(32px, 8vw, 80px);
-            text-shadow: 0 0 8px #39ff14, 0 0 16px #00cc00;
+            text-shadow: 0 0 8px #ff2222, 0 0 16px #990000;
             animation: flicker 4s infinite alternate;
         }
-        /* 文字闪烁动画 */
+        .banner p {
+            margin-top:16px;
+            font-size:20px;
+            color:#ff6666;
+        }
         @keyframes flicker {
             0% { opacity: 0.9; }
             50% { opacity: 1; }
@@ -66,28 +68,27 @@
             font-weight: bold;
             margin-bottom: 24px;
             padding: 12px;
-            border-left: 3px solid #39ff14;
+            border-left: 3px solid #ff2222;
             transition: all 0.3s;
         }
         .post-item:hover {
-            background-color: rgba(57, 255, 20, 0.08);
-            border-left-color: #00ffff;
+            background-color: rgba(255, 34, 34, 0.08);
+            border-left-color: #ff7777;
         }
         .post-item a {
-            color: #39ff14;
+            color: #ff2222;
             text-decoration: none;
-            text-shadow: 0 0 4px #39ff14;
+            text-shadow: 0 0 4px #ff2222;
             transition: all 0.3s;
         }
         .post-item a:hover {
-            color: #00ffff;
-            text-shadow: 0 0 8px #00ffff, 0 0 16px #00ffff;
+            color: #ff7777;
+            text-shadow: 0 0 8px #ff4444, 0 0 16px #ff4444;
         }
-        /* 底部提示 */
         .footer {
             text-align: center;
             padding: 40px;
-            color: #777;
+            color: #772222;
             font-size: 14px;
         }
     </style>
@@ -95,12 +96,12 @@
 <body>
     <div class="banner">
         <h1>yankaifeng70@blog:~$</h1>
-        <p style="margin-top:16px; font-size:20px;">Welcome to my security blog</p>
+        <p>Welcome to my security blog</p>
     </div>
 
     <div class="post-list">
         <div class="post-item"><a href="blog.html">task01 我的第一篇博客</a></div>
-        <div class="post-item"><a href="bugku writeup.html">writrup</a></div>
+        <div class="post-item"><a href="bugku.html">bugku</a></div>
     </div>
 
     <div class="footer">
