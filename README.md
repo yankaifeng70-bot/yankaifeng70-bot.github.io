@@ -100,7 +100,7 @@
 
     <div class="post-list">
         <div class="post-item"><a href="blog.html">task01 我的第一篇博客</a></div>
-        <div class="post-item"><a href="writeup bugku.html">bugku</a></div>
+        <div class="post-item"><a href="bugku writeup.html">writrup</a></div>
     </div>
 
     <div class="footer">
