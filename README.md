@@ -1,25 +1,110 @@
-# yankaifeng70-bot.github.io
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>yankaifeng70的技术博客</title>
     <style>
-        *{margin:0;padding:0;}
-        .banner{background:#888;color:#fff;text-align:center;padding:120px 20px;}
-        .banner h1{font-size:80px;}
-        .post-list{max-width:900px;margin:60px auto;padding:0 20px;}
-        .post-item{font-size:40px;font-weight:bold;color:#222;margin-bottom:10px;}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #050505;
+            color: #39ff14;
+            font-family: "Consolas", "Monaco", monospace;
+            /* 黑客等宽字体 */
+            line-height: 1.6;
+            position: relative;
+            min-height: 100vh;
+        }
+        /* 屏幕扫描线特效 */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0,0,0,0.15),
+                rgba(0,0,0,0.15) 1px,
+                transparent 1px,
+                transparent 3px
+            );
+            pointer-events: none;
+            z-index: 99;
+        }
+        /* 顶部banner */
+        .banner {
+            background: linear-gradient(#0a190a, #000000);
+            text-align: center;
+            padding: 120px 20px;
+            border-bottom: 1px solid #39ff14;
+            position: relative;
+        }
+        .banner h1 {
+            font-size: clamp(32px, 8vw, 80px);
+            text-shadow: 0 0 8px #39ff14, 0 0 16px #00cc00;
+            animation: flicker 4s infinite alternate;
+        }
+        /* 文字闪烁动画 */
+        @keyframes flicker {
+            0% { opacity: 0.9; }
+            50% { opacity: 1; }
+            100% { opacity: 0.95; }
+        }
+        .post-list {
+            max-width: 900px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+        .post-item {
+            font-size: clamp(20px, 4vw, 40px);
+            font-weight: bold;
+            margin-bottom: 24px;
+            padding: 12px;
+            border-left: 3px solid #39ff14;
+            transition: all 0.3s;
+        }
+        .post-item:hover {
+            background-color: rgba(57, 255, 20, 0.08);
+            border-left-color: #00ffff;
+        }
+        .post-item a {
+            color: #39ff14;
+            text-decoration: none;
+            text-shadow: 0 0 4px #39ff14;
+            transition: all 0.3s;
+        }
+        .post-item a:hover {
+            color: #00ffff;
+            text-shadow: 0 0 8px #00ffff, 0 0 16px #00ffff;
+        }
+        /* 底部提示 */
+        .footer {
+            text-align: center;
+            padding: 40px;
+            color: #777;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
     <div class="banner">
-        <h1>yanakifeng70的技术博客</h1>
-       
+        <h1>yankaifeng70@blog:~$</h1>
+        <p style="margin-top:16px; font-size:20px;">Welcome to my security blog</p>
+    </div>
+
     <div class="post-list">
         <div class="post-item"><a href="blog.html">task01 我的第一篇博客</a></div>
         <div class="post-item"><a href="writeup bugku.html">bugku</a></div>
     </div>
+
+    <div class="footer">
+        © 2026 yankaifeng70 | Hacker Terminal Theme
+    </div>
 </body>
 </html>
-index.html
-
