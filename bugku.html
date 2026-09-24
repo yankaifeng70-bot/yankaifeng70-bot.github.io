@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bugku CTF 题目列表</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #000000;
+            color: #ff2222;
+            font-family: "Consolas", "Monaco", monospace;
+            line-height: 1.6;
+            position: relative;
+            min-height: 100vh;
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(100,0,0,0.12),
+                rgba(100,0,0,0.12) 1px,
+                transparent 1px,
+                transparent 3px
+            );
+            pointer-events: none;
+            z-index: 99;
+        }
+        .banner {
+            background: linear-gradient(#200000, #000000);
+            text-align: center;
+            padding: 80px 20px;
+            border-bottom: 1px solid #ff2222;
+        }
+        .banner h1 {
+            font-size: clamp(28px, 6vw, 60px);
+            text-shadow: 0 0 8px #ff2222, 0 0 16px #990000;
+        }
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+        .item {
+            font-size: 24px;
+            margin-bottom:18px;
+            padding:10px;
+            border-left:3px solid #ff2222;
+            transition:0.3s;
+        }
+        .item:hover {
+            background-color:rgba(255,34,34,0.08);
+            border-left-color:#ff7777;
+        }
+        .item a {
+            color:#ff2222;
+            text-decoration:none;
+            text-shadow:0 0 4px #ff2222;
+        }
+        .item a:hover {
+            color:#ff7777;
+            text-shadow:0 0 8px #ff4444;
+        }
+        .back {
+            margin:30px 0;
+        }
+        .back a {
+            color:#ff4444;
+        }
+        .footer {
+            text-align:center;
+            padding:30px;
+            color:#772222;
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <h1>Bugku CTF Writeup List</h1>
+    </div>
+    <div class="container">
+        <div class="back">
+            <a href="index.html">← 返回博客主页</a>
+        </div>
+        <div class="item"><a href="writeup.html?id=1">1 签到题 扫码获得flag</a></div>
+        <div class="item"><a href="writeup.html?id=2">2 滑稽 ctrl+U查看代码找到flag</a></div>
+        <div class="item"><a href="writeup.html?id=3">3 计算机 ctrl+U查看代码找到mixlegth将1改为2</a></div>
+        <div class="item"><a href="writeup.html?id=4">4 alert ctrl+U查看代码翻到最下面找到HTML实体</a></div>
+        <div class="item"><a href="writeup.html?id=5">5 你必须让他停下 ctrl+U查看代码找到flag</a></div>
+        <div class="item"><a href="writeup.html?id=6">6 头等舱 F12切换到网络刷新在响应标头里找到flag</a></div>
+        <div class="item"><a href="writeup.html?id=7">7 post 构造POST请求what=flag</a></div>
+        <div class="item"><a href="writeup.html?id=8">8 source git源码泄露</a></div>
+        <div class="item"><a href="writeup.html?id=9">9 瑞士军刀 nc连接获取shell</a></div>
+        <div class="item"><a href="writeup.html?id=10">10 这是一张单纯的图片 图片隐写</a></div>
+        <div class="item"><a href="writeup.html?id=11">11 /.- 摩斯密码</a></div>
+        <div class="item"><a href="writeup.html?id=12">12 聪明的小羊 栅栏密码</a></div>
+        <div class="item"><a href="writeup.html?id=13">13 Ook Brainfuck解密</a></div>
+    </div>
+    <div class="footer">
+        © 2026 yankaifeng70 | Bugku Writeup
+    </div>
+</body>
+</html>
+
