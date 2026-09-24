@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bugku Writeup</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #000000;
+            color: #ffdddd;
+            font-family: "Consolas", "Monaco", monospace;
+            line-height: 1.8;
+            position: relative;
+            min-height: 100vh;
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(100,0,0,0.12),
+                rgba(100,0,0,0.12) 1px,
+                transparent 1px,
+                transparent 3px
+            );
+            pointer-events: none;
+            z-index: 99;
+        }
+        .banner {
+            background: linear-gradient(#200000, #000000);
+            text-align: center;
+            padding: 60px 20px;
+            border-bottom: 1px solid #ff2222;
+        }
+        .banner h1 {
+            font-size: clamp(24px,5vw,48px);
+            color:#ff2222;
+            text-shadow:0 0 8px #ff2222;
+        }
+        .container {
+            max-width:950px;
+            margin:40px auto;
+            padding:0 20px;
+        }
+        .back {
+            margin-bottom:30px;
+        }
+        .back a {
+            color:#ff4444;
+            text-decoration:none;
+        }
+        .content {
+            border:1px solid #331111;
+            padding:30px;
+            background:#050000;
+            border-radius:4px;
+        }
+        .content h2 {
+            color:#ff2222;
+            margin-bottom:16px;
+            border-bottom:1px solid #441111;
+            padding-bottom:8px;
+        }
+        .content h3 {
+            color:#ff6666;
+            margin:20px 0 10px;
+        }
+        pre {
+            background:#110000;
+            border-left:3px solid #ff2222;
+            padding:12px;
+            margin:15px 0;
+            overflow-x:auto;
+            color:#ff7777;
+        }
+        .footer {
+            text-align:center;
+            padding:30px;
+            color:#772222;
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <h1>Bugku CTF Writeup Detail</h1>
+    </div>
+    <div class="container">
+        <div class="back">
+            <a href="bugku.html">← 返回题目列表</a>
+        </div>
+        <div class="content" id="writeup-content">
+            <!-- JS自动填充内容 -->
+        </div>
+    </div>
+    <div class="footer">
+        © 2026 yankaifeng70 | Bugku Writeup
+    </div>
+
+<script>
+const writeups = {
+1:`
+<h2>1、签到题｜扫码获得flag</h2>
+<h3>题目描述</h3>
+打开页面，页面上展示一张二维码图片，提示扫码获取flag。
+<h3>解题思路</h3>
+这是最简单的Misc签到题，考点：二维码识别。
+<h3>操作步骤</h3>
+1. 访问题目链接，页面直接展示二维码。
+2. 截图保存二维码图片。
+3. 使用二维码识别工具（手机微信/QQ扫一扫、在线二维码解码网站、zbar、zxing工具）读取二维码内容。
+4. 识别成功后直接得到flag字符串，提交即可。
+<h3>考点总结</h3>
+二维码信息隐藏，入门签到，没有坑。
+`,
+2:`
+<h2>2、滑稽｜ctrl+U查看代码找到flag</h2>
+<h3>题目描述</h3>
+打开网页，页面只有一张滑稽图片，没有任何文字提示。
+<h3>解题思路</h3>
+考点：网页源代码查看。网页前端的HTML注释里直接存放flag，浏览器渲染页面不会展示注释内容，但是查看源代码可以看到。
+<h3>操作步骤</h3>
+1. 进入题目网页。
+2. 快捷键 Ctrl + U（Windows） / Cmd + Option + U（Mac）打开网页源代码。
+3. 在源代码页面，使用快捷键 Ctrl + F 打开页面搜索框，搜索关键词 flag。
+4. 在HTML注释 <!-- flag{xxxx} --> 中找到flag。
+<h3>踩坑点</h3>
+不要只看浏览器显示的页面内容，前端页面很多隐藏信息写在注释里。
+`,
+3:`
+<h2>3、计算机｜ctrl+U查看代码找到mixlegth将1改为2</h2>
+<h3>题目描述</h3>
+页面有一个输入框，要求输入数字，输入错误数字提示失败。
+<h3>解题思路</h3>
+考点：前端JS表单校验。前端JS代码写死了判断条件，浏览器拿到完整JS代码，校验逻辑在客户端，可以直接修改前端变量绕过判断。
+> 注意：前端JS校验不安全，因为代码全部下发到浏览器，用户可以随意修改。真正安全的校验必须放在后端。
+<h3>操作步骤</h3>
+1. 打开题目页面，按 Ctrl+U 查看网页源代码。
+2. 查找JS代码，找到变量 mixlegth = 1。
+3. 原理：JS逻辑判断输入的数字和 mixlegth 进行对比，原始值是1，我们需要把这个值修改为2。
+    - 方法A：F12打开开发者工具，找到这段JS，直接修改 mixlegth = 2，然后回到页面输入框提交。
+    - 方法B：读懂JS逻辑，直接算出正确数字，填入输入框提交。
+4. 提交成功，页面返回flag。
+<h3>踩坑点</h3>
+不要以为前端校验不可修改，前端所有JS都可以被用户篡改，这道题就是考察这个安全误区。
+`,
+4:`
+<h2>4、alert｜ctrl+U查看代码翻到最下面找到HTML实体</h2>
+<h3>题目描述</h3>
+页面打开会弹出alert弹窗，但是弹窗内容不是flag，源代码底部有一堆 &#数字; 的字符。
+<h3>解题思路</h3>
+考点：HTML实体编码。&#十进制数字; 是HTML字符实体，每一串数字对应一个ASCII字符，浏览器会自动解码渲染。例如 &#97; 对应字母 a。
+<h3>操作步骤</h3>
+1. 访问页面，Ctrl+U 查看源代码，滚动到页面最底部，复制全部 &#xxx; 编码串。
+2. 解码方式任选其一：
+    - 方法1：把编码粘贴到HTML文件中，用浏览器打开，浏览器自动解析HTML实体，直接显示明文。
+    - 方法2：使用在线HTML实体解码工具，粘贴编码一键解码。
+    - 方法3：Python脚本解码：
+<pre>
+import html
+code = "这里粘贴&#数字;字符串"
+print(html.unescape(code))
+</pre>
+3. 解码完成得到flag。
+<h3>踩坑点</h3>
+不要手动一个个数字查表，量大容易出错；注意区分HTML实体和URL编码。
+`,
+5:`
+<h2>5、你必须让他停下｜ctrl+U查看代码找到flag</h2>
+<h3>题目描述</h3>
+页面会自动不断刷新，页面一闪而过，肉眼无法看清内容。
+<h3>解题思路</h3>
+考点：页面自动刷新机制。页面使用JS或者meta标签不断刷新页面，肉眼来不及读取内容，但是网页源代码可以一次性完整下载，不受页面自动刷新影响。
+<h3>操作步骤</h3>
+1. 打开题目页面，页面疯狂自动刷新。
+2. 立刻按下 Ctrl + U 打开网页源代码。
+> 原理：Ctrl+U读取的是当前下载的完整HTML源码，页面后续刷新不会影响已经打开的源码窗口。
+3. Ctrl+F 搜索flag，直接在源码中找到flag字符串。
+<h3>拓展思路（备选方案）</h3>
+F12开发者工具 -> Sources，找到页面JS，删除自动刷新的代码，页面停止刷新，再看页面内容。
+<h3>踩坑点</h3>
+不要尝试肉眼盯页面，刷新速度很快，肉眼看不到。
+`,
+6:`
+<h2>6、头等舱｜F12切换到网络刷新在响应标头里找到flag</h2>
+<h3>题目描述</h3>
+页面看起来普通，页面正文没有flag，flag藏在HTTP响应头（Response Headers）中。
+<h3>知识点：HTTP头</h3>
+浏览器访问网站，服务器返回资源的时候，会附带HTTP响应头，用来传递元信息（服务器版本、cookie、自定义信息等）。响应头不属于网页正文，所以页面上看不到。
+<h3>操作步骤</h3>
+1. 打开题目网页，按下 F12 打开开发者工具。
+2. 切换到【Network（网络）】标签。
+3. 按下F5刷新页面，此时会捕获本次HTTP请求。
+4. 在请求列表点击页面主请求，右侧切换到【Response Headers（响应标头）】。
+5. 在响应头列表向下查找，找到自定义头部，里面存放flag。
+<h3>踩坑点</h3>
+区分：Request Headers（请求头，浏览器发给服务器）、Response Headers（响应头，服务器返回浏览器），flag在响应头，不要看反。
+`,
+7:`
+<h2>7、post｜构造POST请求，what=flag</h2>
+<h3>题目描述</h3>
+题目提示需要POST方式提交参数 what，值为 flag，页面没有现成表单，无法直接在网页提交。
+> GET：参数放在URL里；POST：参数放在请求体中，不在URL显示。
+<h3>解题思路</h3>
+两种解法：①自制HTML表单提交；②用Burp/Curl构造POST请求。这里写题目提到的HTML表单方案。
+<h3>操作步骤（HTML表单方法）</h3>
+1. 在电脑新建文本文档，写入下面代码：
+<pre>
+&lt;form method="post" action="http://160.202.254.160:16740/"&gt;
+&lt;input name="what" type="text"&gt;
+&lt;input type="submit" value="提交"&gt;
+&lt;/form&gt;
+</pre>
+2. 文件另存为，文件名填写 post.html，编码选择UTF-8，保存类型：所有文件。
+3. 关闭记事本，双击 post.html 使用浏览器打开。
+4. 在输入框填入 flag，点击提交按钮。
+5. 服务器接收POST参数 what=flag，页面返回flag。
+<h3>备选方案 curl命令（kali/Windows终端）</h3>
+<pre>curl -X POST -d "what=flag" http://160.202.254.160:16740/</pre>
+<h3>考点总结</h3>
+GET与POST请求区别，手动构造POST表单提交。
+<h3>踩坑点</h3>
+- action地址必须写对，IP端口不能写错；
+- form的method必须是 post，不能写成get；
+- input的name必须是 what，name是提交参数名，写错服务器接收不到。
+`,
+8:`
+<h2>8、source｜git源码泄露</h2>
+<h3>题目描述</h3>
+访问页面，提示source，页面提示源码相关。观察提示 tig，是 git 的笔误。
+> 考点：Git源码泄露。网站上线时没有删除 .git 文件夹，攻击者可以下载整个git仓库，读取代码历史记录。git会保存每一次提交的文件版本，可以找回曾经删除的文件、flag。
+<h3>操作步骤</h3>
+1. 确认网站存在 .git 目录泄露，访问 http://xxx/.git/ 可以访问。
+2. Windows可以用Git工具，Kali可以用git clone或者GitHack工具。
+3. 方法：打开cmd，使用git克隆仓库：
+<pre>git clone http://目标IP/.git</pre>
+4. 克隆完成进入文件夹，查看git提交记录：
+<pre>git log</pre>
+5. 查看历史提交，找到含有flag的commit，切换到对应版本：
+<pre>git checkout 提交哈希值</pre>
+6. 查看目录下文件，读取文件得到flag。
+> 工具推荐：GitHack，一键恢复git泄露的全部文件，适合不方便手动git操作的场景。
+<h3>考点总结</h3>
+网站源码泄露漏洞，git版本控制系统原理。
+<h3>踩坑点</h3>
+很多人只会看当前版本文件，flag存在历史提交记录，当前最新版本文件已经删除flag，必须回滚历史commit。
+`,
+9:`
+<h2>9、瑞士军刀｜nc连接，shell读取flag文件</h2>
+<h3>题目描述</h3>
+提示nc，给IP和端口。考点：Netcat（nc），网络瑞士军刀，可以建立TCP连接。
+<h3>操作步骤（Kali Linux）</h3>
+1. 打开Kali终端，输入nc命令连接目标IP端口：
+<pre>nc 目标IP 端口号</pre>
+2. 成功连接后，获得一个交互式shell（命令行环境）。
+3. 使用linux命令查看当前目录文件：
+<pre>ls</pre>
+4. 发现目录存在flag文件，使用cat读取文件内容：
+<pre>cat flag</pre>
+5. 终端输出flag。
+<h3>Linux简单命令说明</h3>
+- ls：列出当前目录文件
+- cat filename：读取文件内容并打印
+<h3>踩坑点</h3>
+- 注意nc命令参数，不要输反IP端口；
+- 区分Windows nc和Linux nc，本题建议使用kali；
+- 连接超时检查网络、目标端口是否开放。
+`,
+10:`
+<h2>10、这是一张单纯的图片｜图片隐写，尾部附加字符串</h2>
+<h3>题目描述</h3>
+下载图片，查看图片属性，详细信息里没有flag。图片隐写：把字符串直接追加在图片文件二进制末尾，图片查看器只会读取图片头部的图片数据，忽略末尾附加内容。
+<h3>操作步骤</h3>
+1. 下载题目图片保存到本地。
+2. 右键图片，打开方式选择【记事本】打开图片。
+> 原理：图片本质二进制文件，记事本打开以文本形式解析二进制。图片有效数据在文件头部，附加的字符串写在文件最末尾。
+3. 滚动记事本拉到文件最底部，在图片二进制乱码之后，会出现一段可读的编码字符串。
+4. 复制这段编码，使用对应解码器解码，得到key（flag）。
+<h3>拓展知识点</h3>
+这类属于最简单的文件追加隐写，不需要steghide等复杂隐写工具；
+> 如果记事本打开乱码太多，也可以用 strings 图片.jpg（kali）直接提取文件内可读字符串。
+<pre>strings test.jpg</pre>
+<h3>踩坑点</h3>
+图片属性（exif信息）里面没有flag，不要在exif信息浪费时间，flag是附加在文件末尾。
+`,
+11:`
+<h2>11、/.-｜摩斯密码解码</h2>
+<h3>题目描述</h3>
+给出一串由 . 和 - 组成的字符串，摩斯密码。
+<h3>解题思路</h3>
+摩尔斯电码，使用点 . 和划 - 代表字母数字。
+<h3>操作步骤</h3>
+1. 复制题目给的摩斯码 /.----..-... 这类字符。
+2. 使用在线摩斯密码解码器解码。
+3. 解码得到大写字符串，提交提示错误。
+4. 把字符串全部转为小写，得到正确flag提交。
+<h3>踩坑点</h3>
+解码出来是大写字母，而平台flag是小写格式，大小写不匹配会提交失败！这是本题的坑。
+`,
+12:`
+<h2>12、聪明的小羊｜栅栏密码（2栏）</h2>
+<h3>题目描述</h3>
+给出密文，提示栅栏密码，2栏。
+<h3>栅栏密码原理</h3>
+把明文分成上下两行，按行拼接得到密文；解密就是把密文重新拆分，交替读取字符还原明文。
+> 2栏栅栏：
+明文：abcdef
+分成两行：
+a c e
+b d f
+密文=acebdf
+解密操作：密文 acebdf，长度6，前半放第一行，后半放第二行，依次取每行第一个字符 a b c d e f。
+<h3>本题示例：</h3>
+密文：fa{fe13f590lg6d46d0d0}
+2栏栅栏解密后得到：flag{6fde4163df05d900}
+<h3>操作步骤</h3>
+1. 复制密文，使用在线【2栏栅栏密码解密工具】。
+2. 栏数选择 2，解密得到明文flag。
+<h3>踩坑点</h3>
+栅栏密码栏数是关键，本题固定2栏；不要和凯撒、维吉尼亚密码混淆。
+`,
+13:`
+<h2>13、Ook｜Brainfuck BF 代码解密</h2>
+<h3>题目描述</h3>
+文件内容是 Ook! 语言代码。Ook! 是 Brainfuck（BF）的变体，本质是BF语言，只是把BF符号替换成Ook、句号、问号。
+> Ook! 和BF一一对应，可以互相转换。
+<h3>解题思路</h3>
+先把Ook代码转成BF代码，再执行/解密BF代码，输出flag。
+<h3>操作步骤</h3>
+1. 下载题目文件，复制里面全部Ook代码。
+2. 使用在线 Ook! 转 Brainfuck 工具，转为BF代码。
+3. 将BF代码放入在线Brainfuck解释器运行。
+4. 程序输出flag。
+<h3>考点总结</h3>
+冷门趣味编程语言Ook!/Brainfuck，字符替换类密码。
+`
+};
+
+// 获取url参数id
+const params = new URLSearchParams(location.search);
+const id = params.get('id');
+const dom = document.getElementById('writeup-content');
+if(id && writeups[id]){
+    dom.innerHTML = writeups[id];
+}else{
+    dom.innerHTML = "<h2>请从Bugku题目列表选择题目！</h2><p>URL参数错误，请返回列表页。</p>";
+}
+</script>
+</body>
+</html>
