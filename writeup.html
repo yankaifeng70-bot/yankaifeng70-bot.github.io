@@ -1,111 +1,3 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bugku Writeup</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            background-color: #000000;
-            color: #ffdddd;
-            font-family: "Consolas", "Monaco", monospace;
-            line-height: 1.8;
-            position: relative;
-            min-height: 100vh;
-        }
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: repeating-linear-gradient(
-                0deg,
-                rgba(100,0,0,0.12),
-                rgba(100,0,0,0.12) 1px,
-                transparent 1px,
-                transparent 3px
-            );
-            pointer-events: none;
-            z-index: 99;
-        }
-        .banner {
-            background: linear-gradient(#200000, #000000);
-            text-align: center;
-            padding: 60px 20px;
-            border-bottom: 1px solid #ff2222;
-        }
-        .banner h1 {
-            font-size: clamp(24px,5vw,48px);
-            color:#ff2222;
-            text-shadow:0 0 8px #ff2222;
-        }
-        .container {
-            max-width:950px;
-            margin:40px auto;
-            padding:0 20px;
-        }
-        .back {
-            margin-bottom:30px;
-        }
-        .back a {
-            color:#ff4444;
-            text-decoration:none;
-        }
-        .content {
-            border:1px solid #331111;
-            padding:30px;
-            background:#050000;
-            border-radius:4px;
-        }
-        .content h2 {
-            color:#ff2222;
-            margin-bottom:16px;
-            border-bottom:1px solid #441111;
-            padding-bottom:8px;
-        }
-        .content h3 {
-            color:#ff6666;
-            margin:20px 0 10px;
-        }
-        pre {
-            background:#110000;
-            border-left:3px solid #ff2222;
-            padding:12px;
-            margin:15px 0;
-            overflow-x:auto;
-            color:#ff7777;
-        }
-        .footer {
-            text-align:center;
-            padding:30px;
-            color:#772222;
-        }
-    </style>
-</head>
-<body>
-    <div class="banner">
-        <h1>Bugku CTF Writeup Detail</h1>
-    </div>
-    <div class="container">
-        <div class="back">
-            <a href="bugku.html">← 返回题目列表</a>
-        </div>
-        <div class="content" id="writeup-content">
-            <!-- JS自动填充内容 -->
-        </div>
-    </div>
-    <div class="footer">
-        © 2026 yankaifeng70 | Bugku Writeup
-    </div>
-
-<script>
 const writeups = {
 1:`
 <h2>1、签到题｜扫码获得flag</h2>
@@ -136,7 +28,7 @@ const writeups = {
 不要只看浏览器显示的页面内容，前端页面很多隐藏信息写在注释里。
 `,
 3:`
-<h2>3、计算机｜ctrl+U查看代码找到mixlegth将1改为2</h2>
+<h2>3、计算器｜ctrl+U查看代码找到mixlegth将1改为2</h2>
 <h3>题目描述</h3>
 页面有一个输入框，要求输入数字，输入错误数字提示失败。
 <h3>解题思路</h3>
@@ -219,7 +111,7 @@ F12开发者工具 -> Sources，找到页面JS，删除自动刷新的代码，�
 &lt;input type="submit" value="提交"&gt;
 &lt;/form&gt;
 </pre>
-2. 文件另存为，文件名填写 post.html，编码选择UTF-8，保存类型：所有文件。
+2. 文件另存为，文件名填写 post.html，编码选择UTF‑8，保存类型：所有文件。
 3. 关闭记事本，双击 post.html 使用浏览器打开。
 4. 在输入框填入 flag，点击提交按钮。
 5. 服务器接收POST参数 what=flag，页面返回flag。
@@ -298,7 +190,7 @@ GET与POST请求区别，手动构造POST表单提交。
 <h3>解题思路</h3>
 摩尔斯电码，使用点 . 和划 - 代表字母数字。
 <h3>操作步骤</h3>
-1. 复制题目给的摩斯码 /.----..-... 这类字符。
+1. 复制题目给的摩斯码字符串。
 2. 使用在线摩斯密码解码器解码。
 3. 解码得到大写字符串，提交提示错误。
 4. 把字符串全部转为小写，得到正确flag提交。
@@ -343,25 +235,351 @@ b d f
 冷门趣味编程语言Ook!/Brainfuck，字符替换类密码。
 `,
 14:`
-<h2>14、baby.exe｜杂项-伪装后缀zip</h2>
+<h2>14、baby.exe｜杂项‑伪装后缀zip</h2>
 <h3>题目描述</h3>
 给了一个baby.exe文件，双击无法正常运行，记事本打开全是乱码。
 <h3>解题思路</h3>
 观察文件头部，发现开头是PK，PK0304是zip压缩包的魔数，说明这不是真正的exe程序，只是把zip压缩包修改后缀伪装成exe。
 真正的Windows可执行exe文件头是MZ。
 <h3>操作步骤</h3>
-1. 打开Windows资源管理器，勾选【查看-文件扩展名】，显示文件后缀。
+1. 打开Windows资源管理器，勾选【查看‑文件扩展名】，显示文件后缀。
 2. 将 baby.exe 重命名为 baby.zip。
 3. 尝试解压压缩包。
 4. 如果提示需要密码，是zip伪加密，使用010Editor打开zip，修改全局标志位为00 00，保存后重新解压。
 5. 解压得到文件，打开获取flag。
 <h3>考点</h3>
 文件魔数识别、后缀欺骗、zip伪加密。
-
 `,
-
+15:`
+<h2>15、GET｜GET传参v=get</h2>
+<h3>题目描述</h3>
+页面提示需要GET方式传入参数v，值为get。
+<h3>解题思路</h3>
+GET请求参数附加在URL问号后面，直接构造带查询参数的链接访问页面。
+<h3>操作步骤</h3>
+1. 访问题目页面，在url末尾拼接 ?v=get
+<pre>https://ctf.bugku.com/challenges/detail/id/15.html?v=get</pre>
+2. 访问拼接后的完整URL，页面直接返回flag。
+<h3>考点总结</h3>
+GET请求基础，URL查询字符串传参。
+<h3>踩坑点</h3>
+参数名v、参数值get大小写敏感，写错无法拿到flag。
+`,
+16:`
+<h2>16、md5 collision｜PHP 0e md5弱类型碰撞</h2>
+<h3>题目描述</h3>
+代码使用PHP弱比较 ==，要求两个不同字符串md5哈希结果相等。
+<h3>解题思路</h3>
+md5哈希以0e开头时，PHP弱比较会把它当成科学计数法，解析为数字0；两个0e开头md5值，== 判断相等。
+<h3>操作步骤</h3>
+1. 选用已知0e开头md5字符串：a=QNKCDZO，b=s878926199a
+<pre>https://ctf.bugku.com/challenges/detail/id/61.html?a=QNKCDZO&b=s878926199a</pre>
+2. 访问链接，成功绕过校验拿到flag。
+<h3>考点总结</h3>
+PHP弱类型比较漏洞，md5 0e碰撞。
+<h3>踩坑点</h3>
+===强比较不会触发这个漏洞，本题是==弱比较。
+`,
+17:`
+<h2>17、web2｜PHP数组绕过===强比较</h2>
+<h3>题目描述</h3>
+代码使用$what === "flag"强类型判断，要求严格相等。
+<h3>解题思路</h3>
+PHP中数组和字符串做===强比较，类型不一致直接返回false，绕过判断。GET支持数组传参写法what[]。
+<h3>操作步骤</h3>
+<pre>https://ctf.bugku.com/challenges/detail/id/52.html?what[]=flag</pre>
+访问链接，传入数组参数，绕过强比较得到flag。
+<h3>考点总结</h3>
+PHP数组与字符串强比较特性，GET数组传参语法。
+<h3>踩坑点</h3>
+必须加[]变成数组，普通字符串无法绕过===。
+`,
+18:`
+<h2>18、眼见非实｜docx本质是zip压缩包</h2>
+<h3>题目描述</h3>
+docx文档打不开，修改后缀发现是zip伪装。
+<h3>解题思路</h3>
+docx本质是zip压缩包，内部存放xml文件。修改后缀为zip解压，在xml文件查找flag。
+<h3>操作步骤</h3>
+1. 打开文件资源管理器，显示文件扩展名。
+2. 将 xxx.docx 修改为 xxx.zip
+3. 解压压缩包，遍历内部xml文件搜索flag。
+<h3>考点总结</h3>
+Office文档底层是zip压缩包，文件后缀欺骗。
+<h3>踩坑点</h3>
+不要用Word直接打开，会看不到原始xml内容。
+`,
+19:`
+<h2>19、xss｜反射型XSS基础</h2>
+<h3>题目描述</h3>
+输入框接收用户输入，直接回显到页面，没有HTML转义过滤。
+<h3>解题思路</h3>
+可控输入直接输出页面，可注入JS脚本执行，基础反射型XSS。
+<h3>操作步骤</h3>
+1. 在输入框提交payload：
+<pre>&lt;script&gt;alert(1)&lt;/script&gt;</pre>
+2. 弹窗触发，验证XSS；按题目要求构造对应payload拿到flag。
+<h3>考点总结</h3>
+反射型XSS，输出无HTML实体转义。
+<h3>踩坑点</h3>
+如果有WAF，需要编码变形绕过；本题无过滤。
+`,
+20:`
+<h2>20、eval｜PHP eval代码执行漏洞</h2>
+<h3>题目描述</h3>
+GET参数直接传入eval函数，eval会把字符串当做PHP代码执行。
+<h3>解题思路</h3>
+传入system()读取服务器上flag文件，实现代码执行读取flag。
+<h3>操作步骤</h3>
+<pre>https://ctf.bugku.com/challenges/detail/id/60.html?cmd=system('cat flag.php');</pre>
+访问链接，执行PHP代码读取flag。
+<h3>考点总结</h3>
+PHP危险函数eval，远程代码执行漏洞。
+<h3>踩坑点</h3>
+eval内部必须符合PHP语法，注意引号闭合。
+`,
+21:`
+<h2>21、矛盾｜PHP变量覆盖/弱类型</h2>
+<h3>题目描述</h3>
+页面给出一段PHP代码，需要构造参数满足判断拿到flag。
+<h3>解题思路</h3>
+题目是经典矛盾题，利用PHP变量解析和弱类型判断。
+<h3>操作步骤</h3>
+1. 构造payload，使用num=1abc 这类方式，is_numeric判断失效，同时满足==1。
+<pre>https://ctf.bugku.com/challenges/detail/id/72.html?num=1abc</pre>
+2. 访问链接拿到flag。
+<h3>考点总结</h3>
+PHP is_numeric 弱类型判断缺陷。
+<h3>踩坑点</h3>
+is_numeric对数字+字母组合字符串返回false，但是==比较会自动提取数字部分。
+`,
+22:`
+<h2>22、把猪困在猪圈里｜猪圈密码</h2>
+<h3>题目描述</h3>
+下载base64文本，解码得到图片，图片上是猪圈密码符号。
+<h3>解题思路</h3>
+猪圈密码（Pigpen cipher），是一种古典替换密码，符号对应英文字母。
+<h3>操作步骤</h3>
+1. 将题目给出的base64字符串解码，还原成图片。
+2. 对照猪圈密码对照表，把符号翻译成明文。
+3. 拼接得到flag。
+<h3>考点总结</h3>
+古典密码：猪圈密码，base64图片还原。
+<h3>踩坑点</h3>
+不要直接拿base64当文本解密，必须先还原图片再看符号。
+`,
+23:`
+<h2>23、黄道十二官｜黄道十二宫密码</h2>
+<h3>题目描述</h3>
+附件图片是黄道十二宫符号，对应字母。
+<h3>解题思路</h3>
+黄道十二宫密码，一套占星符号替换密码。
+<h3>操作步骤</h3>
+1. 打开图片，提取全部符号。
+2. 对照黄道十二宫密码表一一替换，得到明文flag。
+<h3>考点总结</h3>
+古典替换密码，黄道十二宫。
+<h3>踩坑点</h3>
+符号容易混淆，对照表格仔细核对。
+`,
+24:`
+<h2>24、备份是个好习惯｜备份文件泄露 .bak</h2>
+<h3>题目描述</h3>
+开发备份习惯，会生成index.php.bak备份文件，可以直接下载源码。
+<h3>解题思路</h3>
+访问 index.php.bak，下载PHP备份文件，读取源码获取flag。
+<h3>操作步骤</h3>
+1. 访问页面尝试加上 .bak后缀：xxx/index.php.bak
+2. 下载bak文件，用记事本打开查看PHP源码。
+3. 在源码找到flag。
+<h3>考点总结</h3>
+网站备份文件泄露 .bak。
+<h3>踩坑点</h3>
+常见备份后缀还有 .old、.backup，都是开发遗留。
+`,
+25:`
+<h2>25、简单的SQL注入｜union联合查询注入</h2>
+<h3>题目描述</h3>
+id参数可控，存在单引号闭合的SQL注入漏洞。
+<h3>解题思路</h3>
+先用order by判断列数，再使用union select联合查询，爆库、爆表、爆字段读取flag。
+<h3>操作步骤</h3>
+1. 判断列数：?id=1' order by 2-- -
+2. 联合查询payload：
+<pre>?id=-1' union select 1,flag from flag-- -</pre>
+3. 页面返回查询结果，拿到flag。
+<h3>考点总结</h3>
+SQL联合查询注入，基础手工注入流程。
+<h3>踩坑点</h3>
+前面查询的数据必须为空，所以id=-1，让union查询结果显示在页面。
+`,
+26:`
+<h2>26、get_post｜同时GET和POST传参</h2>
+<h3>题目描述</h3>
+后端代码要求GET参数a 和 POST参数b 同时存在，才返回flag。
+<h3>解题思路</h3>
+同一个请求，URL带上GET参数，请求体提交POST参数。Burp或者curl实现。
+<h3>操作步骤 curl命令：</h3>
+<pre>curl "https://ctf.bugku.com/challenges/detail/id/3.html?a=1" -d "b=2"</pre>
+<h3>考点总结</h3>
+区分GET参数（URL）与POST参数（请求体），同一个请求可同时携带两者。
+<h3>踩坑点</h3>
+只传GET或者只传POST都无法通过校验，两者必须同时存在。
+`,
+27:`
+<h2>27、几维鸟的秘密｜steghide隐写</h2>
+<h3>题目描述</h3>
+下载一张jpg图片，图片里面隐藏了文件，使用steghide提取，密码kiwi。
+<h3>解题思路</h3>
+steghide是经典图片隐写工具，可以把文件嵌入jpg图片，需要密码提取。
+<h3>操作步骤（Kali）</h3>
+<pre>steghide extract -sf kiwi.jpg</pre>
+输入密码 kiwi，提取出隐藏文本文件，读取得到flag。
+<h3>考点总结</h3>
+图片隐写 steghide。
+<h3>踩坑点</h3>
+不是exif信息，exif查看器找不到flag，必须用steghide提取。
+`,
+28:`
+<h2>28、想想办法干他一炮｜EXIF元数据信息</h2>
+<h3>题目描述</h3>
+jpg图片，flag存放在图片EXIF注释元数据中。
+<h3>解题思路</h3>
+EXIF是图片附加的元信息，包含作者、备注、相机信息，可用exiftool读取。
+<h3>操作步骤</h3>
+<pre>exiftool test.jpg</pre>
+查看输出的注释字段，里面存放flag。Windows也可以右键图片属性详细信息查看。
+<h3>考点总结</h3>
+图片EXIF元信息隐藏数据。
+<h3>踩坑点</h3>
+图片本身画面没有flag，不要在图片内容里找。
+`,
+29:`
+<h2>29、多种方法解决｜base64转二维码图片</h2>
+<h3>题目描述</h3>
+给exe文件，打开里面是base64编码，解码后得到二维码图片。
+<h3>解题思路</h3>
+base64字符串是图片的base64编码，还原图片，识别二维码。
+<h3>操作步骤</h3>
+1. 复制base64字符串。
+2. base64解码，保存为png图片。
+3. 打开图片，扫码识别得到key。
+<h3>考点总结</h3>
+base64图片编码，二维码识别。
+<h3>踩坑点</h3>
+base64解码后不是文本，是图片二进制，不能直接看文字。
+`,
+30:`
+<h2>30、雾岛风起时｜PHP弱类型+文件包含</h2>
+<h3>题目描述</h3>
+代码存在多个条件判断，结合弱类型与文件包含考点。
+<h3>解题思路</h3>
+同时满足多个PHP判断条件，构造参数读取flag文件。
+<h3>操作步骤</h3>
+1. 分析源码逻辑，构造参数满足全部判断。
+2. 读取文件拿到flag。
+<h3>考点总结</h3>
+PHP多条件弱类型综合题。
+<h3>踩坑点</h3>
+多个条件必须一次性全部满足，缺一不可。
+`,
+31:`
+<h2>31、/.-｜摩斯密码解码</h2>
+<h3>题目描述</h3>
+给出一串由 . 和 - 组成的字符串，摩斯密码。
+<h3>解题思路</h3>
+摩尔斯电码，使用点 . 和划 - 代表字母数字。
+<h3>操作步骤</h3>
+1. 复制题目给的摩斯码字符串。
+2. 使用在线摩斯密码解码器解码。
+3. 解码得到大写字符串，提交提示错误。
+4. 把字符串全部转为小写，得到正确flag提交。
+<h3>踩坑点</h3>
+解码出来是大写字母，而平台flag是小写格式，大小写不匹配会提交失败！这是本题的坑。
+`,
+32:`
+<h2>32、easy_hash｜hash爆破</h2>
+<h3>题目描述</h3>
+给出一段哈希值，需要破解得到原文。
+<h3>解题思路</h3>
+识别哈希类型（md5/sha1），使用字典爆破。Kali可以用hashcat，在线网站也可以解密。
+<h3>操作步骤</h3>
+1. 复制哈希串，识别加密算法。
+2. 使用在线哈希解密网站或者hashcat跑字典。
+3. 破解成功得到明文，提交flag。
+<h3>考点总结</h3>
+哈希字典爆破。
+<h3>踩坑点</h3>
+哈希不可逆，只能字典爆破，无法直接解密。
+`,
+33:`
+<h2>33、web3｜strcmp数组绕过</h2>
+<h3>题目描述</h3>
+PHP strcmp比较函数，接收数组参数会报错返回0，判断相等绕过。
+<h3>解题思路</h3>
+strcmp()期望接收字符串，传入数组会产生警告，返回0，0==0判断成立。GET传参 password[]=xxx。
+<h3>操作步骤</h3>
+<pre>https://ctf.bugku.com/challenges/detail/id/76.html?password[]=1</pre>
+访问链接，成功绕过校验拿到flag。
+<h3>考点总结</h3>
+PHP strcmp函数缺陷，数组传入导致比较绕过。
+<h3>踩坑点</h3>
+高版本PHP修复这个漏洞，本题是旧版本PHP环境。
+`,
+34:`
+<h2>34、过狗一句话｜assert字符串分割代码执行</h2>
+<h3>题目描述</h3>
+源码把字符串按#分割，拼接后送入assert执行。
+<h3>解题思路</h3>
+assert可以执行PHP代码，构造payload绕过WAF过滤。
+<h3>操作步骤</h3>
+<pre>?s=var_dump#scandir(.)</pre>
+<pre>?s=file_get_contents#flag.txt</pre>
+<h3>考点总结</h3>
+assert代码执行，字符串分割绕过过滤。
+<h3>踩坑点</h3>
+assert和eval有区别，assert传入字符串会当做PHP代码执行。
+`,
+35:`
+<h2>35、各种绕过哟｜preg_match数组绕过正则</h2>
+<h3>题目描述</h3>
+preg_match正则匹配，传入数组参数直接返回false，绕过正则过滤。
+<h3>解题思路</h3>
+preg_match只能处理字符串，传入数组会返回false，不会触发正则拦截。GET传参如 uname[]=xxx。
+<h3>操作步骤</h3>
+<pre>?uname[]=admin&pass[]=123</pre>
+<h3>考点总结</h3>
+PHP preg_match 函数对数组参数的处理缺陷。
+<h3>踩坑点</h3>
+必须传数组，普通字符串会被正则检测拦截。
+`,
+36:`
+<h2>36、待添加</h2>
+<h3>题目描述</h3>
+待补充。
+<h3>解题思路</h3>
+待补充。
+<h3>操作步骤</h3>
+待补充。
+<h3>考点总结</h3>
+待补充。
+<h3>踩坑点</h3>
+待补充。
+`,
+37:`
+<h2>37、待添加</h2>
+<h3>题目描述</h3>
+待补充。
+<h3>解题思路</h3>
+待补充。
+<h3>操作步骤</h3>
+待补充。
+<h3>考点总结</h3>
+待补充。
+<h3>踩坑点</h3>
+待补充。
+`,
 };
-
 // 获取url参数id
 const params = new URLSearchParams(location.search);
 const id = params.get('id');
@@ -371,6 +589,4 @@ if(id && writeups[id]){
 }else{
     dom.innerHTML = "<h2>请从Bugku题目列表选择题目！</h2><p>URL参数错误，请返回列表页。</p>";
 }
-</script>
-</body>
-</html>
+
